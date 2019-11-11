@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">hwStory</string>
+
+    <!-- MainActivity-->
+    <string name="hint">Выбирите историю</string>
+    <string-array name="stories">
+        <item>Скучная</item>
+        <item>Норм</item>
+        <item>Ну такое себе</item>
+    </string-array>
+
+    <!-- FillWordActivity-->
+    <string name="word_left_label">Осталось ввести %s слова</string>
+
 </resources>
