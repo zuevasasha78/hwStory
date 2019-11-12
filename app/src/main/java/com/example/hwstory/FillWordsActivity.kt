@@ -6,11 +6,12 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_fill_words.*
 
-val  wordAmountTotal = 5
 
 class FillWordsActivity : AppCompatActivity() {
 
+    private val wordAmountTotal = 5
     private var wordAmount = 0
+    private val words = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,14 +21,17 @@ class FillWordsActivity : AppCompatActivity() {
 
 
     fun clickOk(view: View) {
-        val words = ArrayList<String>()
+        words.add(editText.text.toString())
+        wordAmount += 1
         if (wordAmount != wordAmountTotal) {
-            words.add(editText.text.toString())
-            wordAmount += 1
+            word_left.text = getString(R.string.word_left_label)
+                    .format(wordAmountTotal - wordAmount)
+            editText.text.clear()
 
         } else {
             val lastIntent = Intent(this, StoryActivity::class.java)
-            lastIntent.putExtra("storyType", intent.getStringExtra("storyType"))
+            val storyType = intent.getStringExtra("storyType")
+            lastIntent.putExtra("storyType", storyType)
             lastIntent.putExtra("words", words)
             startActivity(lastIntent)
         }
