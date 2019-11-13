@@ -21,19 +21,22 @@ class FillWordsActivity : AppCompatActivity() {
 
 
     fun clickOk(view: View) {
-        words.add(editText.text.toString())
-        wordAmount += 1
-        if (wordAmount != wordAmountTotal) {
-            word_left.text = getString(R.string.word_left_label)
-                    .format(wordAmountTotal - wordAmount)
-            editText.text.clear()
+        if (editText.text.toString() != "") {
+            words.add(editText.text.toString())
+            wordAmount += 1
+            if (wordAmount != wordAmountTotal) {
+                word_left.text = getString(R.string.word_left_label)
+                        .format(wordAmountTotal - wordAmount)
+                editText.text.clear()
 
-        } else {
-            val lastIntent = Intent(this, StoryActivity::class.java)
-            val storyType = intent.getStringExtra("storyType")
-            lastIntent.putExtra("storyType", storyType)
-            lastIntent.putExtra("words", words)
-            startActivity(lastIntent)
+            } else {
+                val lastIntent = Intent(this, StoryActivity::class.java)
+                val storyType = intent.getStringExtra("storyType")
+                lastIntent.putExtra("storyType", storyType)
+                lastIntent.putExtra("words", words)
+                startActivity(lastIntent)
+            }
         }
     }
 }
+

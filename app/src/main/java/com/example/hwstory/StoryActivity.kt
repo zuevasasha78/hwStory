@@ -24,9 +24,9 @@ class StoryActivity : AppCompatActivity() {
 
     private fun preparingText(filePath: String): String {
         val text = readFileFromAssets(filePath)
-        val words = intent.getShortArrayExtra("words")
+        val words = intent.getStringArrayListExtra("words")
         for (word in words) {
-            text.format(word)
+            text.replace("word", word)
         }
         return text
     }
